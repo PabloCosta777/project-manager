@@ -7,7 +7,7 @@ module.exports = async(req,res)=>{
         const response = await board.findByPk(id,{include:task})
         res.send(response.tasks)
     }else if(user){
-        const response =await board.findAll({where:{id:user}})
+        const response =await board.findAll({where:{userId:user}})
         res.send(response)
 
     }else{
