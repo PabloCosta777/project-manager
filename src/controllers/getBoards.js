@@ -1,14 +1,12 @@
-const board = require("../models/board");
-const task = require("../models/task");
+const {getAll,getByPk} = require('../services/boards')
 module.exports = async(req,res)=>{
     const id = req.query.id
     const user =req.query.user
+  
     if(id){
-        const response = await board.findByPk(id,{include:task})
-        res.send(response.tasks)
+         getAll(id,res)
     }else if(user){
-        const response =await board.findAll({where:{userId:user}})
-        res.send(response)
+        getByPk(user,res)
 
     }else{
         res.send({ msg: "missing data" });
